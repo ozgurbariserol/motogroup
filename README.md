@@ -72,8 +72,11 @@ CI her push/PR'da lint · typecheck · format · birim testlerini ve ayrı bir j
 
 ### Doğrulama durumu (2026-10-14)
 
-Bu depo yayınlanmadan önce temiz bir kopyada kuruldu: `pnpm install`, `pnpm lint`,
-`pnpm format:check`, üç paketin `tsc --noEmit` kontrolü ve 19 birim test **geçti**.
-**Çalıştırılmadı:** DB/RLS testleri ve uçtan uca testler (yerel Supabase gerektirir),
-mobil uygulamanın bir cihazda çalıştırılması, PayTR ile gerçek bir ödeme.
-Fiyat rakamları yer tutucudur (`packages/shared/src/constants.ts`).
+Yayından önce temiz bir kopyada `pnpm install`, `pnpm lint`, `pnpm format:check`, üç paketin
+`tsc --noEmit` kontrolü ve 19 birim test çalıştırıldı. GitHub Actions'taki CI bu depoda
+(commit `03e01bc`) **iki işiyle de geçti**: lint · typecheck · format · birim testler ve
+`supabase start` ile migration'lar, SQL mantık testleri, RLS izolasyonu ve gerçek auth
+oturumlu uçtan uca akış.
+**Doğrulanmadı:** mobil uygulamanın gerçek bir cihazda çalıştırılması ve PayTR ile gerçek bir
+ödeme (CI'daki testler PayTR'a istek atmaz). Fiyat rakamları yer tutucudur
+(`packages/shared/src/constants.ts`).
