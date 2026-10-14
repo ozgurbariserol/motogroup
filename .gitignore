@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+next-env.d.ts
+.expo/
+expo-env.d.ts
+.turbo/
+*.tsbuildinfo
+
+# Environment — bkz. CLAUDE.md Bölüm 7: .env repoya GİRMEZ
+.env
+.env.*
+!.env.example
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/

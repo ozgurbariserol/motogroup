@@ -1,0 +1,7 @@
+# Varsayılan sahip — tüm değişiklikler incelenmeli
+* @ozgurbariserol
+
+# Güvenlik-kritik alanlar (RLS, ödeme, secret yönetimi)
+/supabase/ @ozgurbariserol
+/apps/web/src/lib/ @ozgurbariserol
+/apps/web/src/app/clubs/new/ @ozgurbariserol

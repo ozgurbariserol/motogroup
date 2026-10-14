@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 5
+    groups:
+      dev-dependencies:
+        dependency-type: 'development'
+    ignore:
+      # Expo SDK / React Native sürümleri Expo ile birlikte yükseltilir
+      - dependency-name: 'expo'
+      - dependency-name: 'react-native'
+      - dependency-name: 'react'
+      - dependency-name: 'react-dom'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'

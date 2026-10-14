@@ -1,0 +1,25 @@
+# Supabase yerel geliştirme yapılandırması.
+# Ayrıntılar: https://supabase.com/docs/guides/cli/config
+project_id = "motogroup"
+
+[db]
+major_version = 15
+
+[db.pooler]
+enabled = false
+
+[api]
+enabled = true
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enable_signup = true
+# Profil satırı auth.users insert trigger'ı ile otomatik oluşur (bkz. migration triggers).
+
+[realtime]
+enabled = true
+
+[storage]
+enabled = true

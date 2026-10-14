@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Lint · Typecheck · Format · Unit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (ESLint)
+        run: pnpm lint
+
+      - name: Typecheck (TS strict, tüm paketler)
+        run: pnpm typecheck
+
+      - name: Format check (Prettier)
+        run: pnpm format:check
+
+      - name: Unit tests (Vitest)
+        run: pnpm test
+
+  db-integration:
+    name: DB · RLS · E2E (Supabase)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Start Supabase (migration'lar uygulanır)
+        run: supabase start
+
+      - name: SQL — mantık (trigger/RPC/kapasite/CHECK)
+        run: docker exec -i supabase_db_motogroup psql -U postgres -d postgres -v ON_ERROR_STOP=1 < supabase/tests/00_logic_test.sql
+
+      - name: SQL — RLS izolasyonu
+        run: docker exec -i supabase_db_motogroup psql -U postgres -d postgres -v ON_ERROR_STOP=1 < supabase/tests/01_rls_test.sql
+
+      - name: Uçtan uca akış (Vitest, gerçek auth oturumları)
+        run: pnpm test:integration
+
+      - name: Stop Supabase
+        if: always()
+        run: supabase stop
