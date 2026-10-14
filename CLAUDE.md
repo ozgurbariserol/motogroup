@@ -12,7 +12,7 @@ Türkiye'deki motosiklet topluluğu için **kulüp işletim sistemi**. WhatsApp 
 
 **Konumlandırma (kritik):** Bu bir "navigasyon/rota uygulaması" DEĞİLDİR. Bizim farkımız **kulüp operasyonu**: üye yönetimi, etkinlik, RSVP, grup sohbeti, sürüş günü koordinasyonu. Navigasyon için kullanıcıyı Google Maps'e devrediyoruz, kendi navigasyonumuzu yapmıyoruz.
 
-**Hedef kitle:** Büyük hacimli motor süren, kulüp/topluluk aidiyeti olan motorcular ve bu kulüplerin yöneticileri. 
+**Hedef kitle:** Büyük hacimli motor süren, kulüp/topluluk aidiyeti olan motorcular ve bu kulüplerin yöneticileri.
 
 ---
 
